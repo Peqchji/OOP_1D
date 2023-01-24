@@ -1,0 +1,9 @@
+def main():
+    comparator = lambda num: True if (num % 7 == 0 and num % 5 != 0) else False
+    results = list( filter( comparator, range(2000, 3200, 1)))
+    print(*results, sep = ',', end = '')
+    print(",")  
+    return 0
+
+if __name__ == '__main__':
+    main()

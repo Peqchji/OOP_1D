@@ -1,0 +1,10 @@
+def main():
+    results: int = 0
+    Input = int( input( "Input : "))
+    results = Input * 1234
+    massage = str(Input) + "+ " + str(Input)*2 + "+ " + str(Input)*3 + "+ " + str(Input)*4
+    print(f"Output : {results: d} (={massage})".lstrip())
+    return 0
+
+if __name__ == '__main__':
+    main()

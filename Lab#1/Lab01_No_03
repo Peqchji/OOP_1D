@@ -1,0 +1,19 @@
+import math
+def main():
+    results: int = 0
+    Parking: int = 0
+    time = [int(time) for time in input().split(" ")]
+
+    Parking = -(time[0] * 60 + time[1]) + (time[2] * 60 + time[3])
+    if(Parking > 15 and Parking <= 180):
+        results = math.ceil(Parking/60) * 10
+    elif(Parking > 180 and Parking < 360):
+        results = math.ceil(Parking/60) * 20 - 30
+    else:
+        results = 200
+    print(results)
+    print(f"Parking = {Parking}")
+    return 0
+
+if __name__ == '__main__':
+   main()

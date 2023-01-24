@@ -1,0 +1,13 @@
+def is_Palindrome(x):
+    return x == x[:: -1]
+
+def main():
+    palin = []
+    for i in range(999, 99, -1):
+        for j in range(999, 99, -1):
+            if( is_Palindrome( str( i * j))):
+                palin.append(i*j)
+    return palin
+
+if __name__ == '__main__':
+    print(max(main()))

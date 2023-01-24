@@ -1,0 +1,20 @@
+def main():
+    Uppercase: int = 0
+    Lowercase: int
+
+    string = str( input())
+    
+    for idx in string:
+        if idx.isupper():
+            string = string.replace( str(idx),  '')
+            Uppercase += 1
+        elif not idx.isalpha():
+            string = string.replace( str(idx),  '')
+    Lowercase = len(string)
+
+    print(Lowercase)
+    print(Uppercase)
+    return 0
+
+if __name__ == '__main__':
+    main()
