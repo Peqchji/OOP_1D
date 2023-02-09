@@ -64,7 +64,7 @@ class ProductCatalog:
             self.__products = [] # List of Product object
 
 #####################################################################################################
-#                                              ------- class                                        #
+#                                    MarketPlace Element class                                      #
 #####################################################################################################
 class Promotion:
      def __init__(self, duration, description):
