@@ -88,7 +88,7 @@ class Coupon:
 
 class Cart:
      def __init__(self, items, total_price):
-        self.__items = [] # List of Item object
+        self.__items = [] # List for store Item object 
         self.__total_price = 0
 
 class Order:
@@ -102,7 +102,7 @@ class Order:
 
 class OrderHistory:
      def __init__(self, orders):
-          self.__orders = [] # list of Orders
+          self.__orders = [] # list for store Orders
 
 #####################################################################################################
 #                                              Payment class                                        #
