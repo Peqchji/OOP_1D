@@ -1,3 +1,4 @@
+from enum import Enum
 #####################################################################################################
 #                                              Account class                                        #
 #####################################################################################################
@@ -11,20 +12,23 @@ class Account:
 class Admin(Account):
     __product_catalog = []
 
-    def __init__(self, username, password, email, phone_number, product_catalog):
+    def __init__(self, username, password, email, phone_number, product_catalog, coupon, promotion, order):
             Account.__init__(self, username, password, email, phone_number)
             self.__product_catalog = product_catalog # ProductCataog object
+            self.__coupon = coupon # Coupon object
+            self.__promotion = promotion # Promotion object
+            self.__order = order # Order object (specific user) 
     #some method for managing our web
         
         
 class User(Account):
-    def __init__(self, username, password, email, phone_number, person_data, address, cart, order,  order_history):
+    def __init__(self, username, password, email, phone_number, person_data, address, cart, order,  order_history, coupon):
         Account.__init__(self, username, password, email, phone_number)
         self.__person_data = person_data
         self.__address = [] # List of Shipping_Address Object 
         self.__cart = cart # Cart object
-        self.__order = order # Order object
         self.__order_history = order_history # OrderHistory object
+        self.__coupons = [] # List for store Coupon object
 
 class Shipping_Address:
     def __init__(self, name_surname, phone_number, address, sub_district, district, province, postal_code):
@@ -87,18 +91,20 @@ class Coupon:
         self.__code_id = code_id
 
 class Cart:
-     def __init__(self, items, total_price):
+     def __init__(self, items, total_price, coupon):
         self.__items = [] # List for store Item object 
         self.__total_price = 0
+        self.__coupon = coupon # Coupon object (use a coupon for discount)
 
 class Order:
-     def __init__(self, order_date, delivery_expect_date, payment_method, tracking_number, total_price, order_id):
+     def __init__(self, order_date, delivery_expect_date, payment_method, tracking_number, total_price, order_id, status):
         self.__order_date = order_date
         self.__delivery_expect_date = delivery_expect_date
         self.__payment_method = payment_method
         self.__tracking_number = tracking_number
         self.__total_price = total_price
         self.__order_id = order_id
+        self.__status = status
 
 class OrderHistory:
      def __init__(self, orders):
@@ -114,10 +120,22 @@ class Payment:
           self.__create_on = create_on
 
 class CreditCardTransaction(Payment):
-     def __init__(self, transaction_id, status, create_on, name_on_card):
+     def __init__(self, transaction_id, status, create_on, name_on_card, card_id, CVC, due_date):
           Payment.__init__(self, transaction_id, status, create_on)
           self.__name_on_card = name_on_card
+          self.__card_id = card_id
+          self.__CVC = CVC
+          self.__due_date = due_date
 
 class CashOnDeliveryTransaction(Payment):
      def __init__(self, transaction_id, status, create_on):
           Payment.__init__(self, transaction_id, status, create_on)
+
+class Cashier:
+     def __init__(self, net_price, payment_method, payment):
+          self.__net_price = net_price
+          self.__payment_method = payment_method # PaymentMethod object
+          self.__payment = payment # Payment object 
+
+class PaymentMethod(Enum):
+     CreditCardTransaction, CardOnDelivery = 1, 2
